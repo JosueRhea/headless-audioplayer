@@ -1,4 +1,4 @@
-import { Button } from "ui";
+import { Button } from "headless-audioplayer-react";
 
 export default function Web() {
   return (
