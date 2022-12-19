@@ -8,7 +8,7 @@ export default function Web() {
         <Player.Stats>
           {(context) => {
             console.log(context);
-            return <p>{JSON.stringify(context)}</p>
+            return <p>{JSON.stringify(context)}</p>;
           }}
         </Player.Stats>
       </Player>
