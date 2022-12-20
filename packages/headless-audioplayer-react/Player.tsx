@@ -5,10 +5,19 @@ import {
   ChangeEvent,
   createContext,
   ReactNode,
-  useContext,
 } from "react";
 
-const PlayerContext = createContext({});
+type PlayerContextProps = {
+  downloadProgress: number;
+  isPlaying: boolean;
+  progress: number;
+  timestamp: {
+    current: string;
+    total: string;
+  };
+  togglePlay: () => void;
+};
+const PlayerContext = createContext<PlayerContextProps | null>(null);
 
 const getTime = (time: number) => {
   let seconds: string | number = time % 60;
@@ -27,10 +36,7 @@ export const usePlayer = () => {
   const [progress, setProgress] = useState(0);
   const [shouldStart, setShouldStart] = useState(false);
   const [timestamp, setTimeStamp] = useState({ current: "0:0", total: "0:0" });
-  const [downloadProgress, setDownloadProgress] = useState({
-    left: 0,
-    width: 0,
-  });
+  const [downloadProgress, setDownloadProgress] = useState(0);
   const audioEl = useRef<HTMLAudioElement>(null);
 
   const onSliderChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -71,6 +77,7 @@ export const usePlayer = () => {
     if (shouldStart) {
       setIsPlaying(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const togglePlay = () => {
@@ -98,17 +105,14 @@ export const usePlayer = () => {
 
   const handleOnDownloadProgress = () => {
     const audio = audioEl.current;
-    if (downloadProgress.width <= 100 && audio) {
+    if (downloadProgress <= 100 && audio) {
       for (let i = 0; i < audio.buffered.length; i++) {
         const bufferedStart = audio.buffered.start(i);
         const bufferedEnd = audio.buffered.end(i);
-        setDownloadProgress({
-          left: Math.round((100 / audio.duration) * bufferedStart) || 0,
-          width:
-            Math.round(
-              (100 / audio.duration) * (bufferedEnd - bufferedStart)
-            ) || 0,
-        });
+        setDownloadProgress(
+          Math.round((100 / audio.duration) * (bufferedEnd - bufferedStart)) ||
+            0
+        );
       }
     }
   };
@@ -131,7 +135,7 @@ export type PlayerProps = {
   children: ReactNode;
 };
 
-const Player = ({ src, children }: PlayerProps) => {
+const PlayerProvider = ({ src, children }: PlayerProps) => {
   const {
     audioEl,
     downloadProgress,
@@ -153,13 +157,14 @@ const Player = ({ src, children }: PlayerProps) => {
         onProgress={handleOnDownloadProgress}
         onTimeUpdate={onTimeUpdate}
         ref={audioEl}
-        controls={true}
+        controls={false}
+        style={{ display: "none" }}
       ></audio>
       {children}
     </PlayerContext.Provider>
   );
 };
 
-Player.Stats = PlayerContext.Consumer;
+const Player = PlayerContext.Consumer;
 
-export { Player };
+export { PlayerProvider, Player };
