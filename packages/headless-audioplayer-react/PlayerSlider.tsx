@@ -1,5 +1,5 @@
 import { ChangeEventHandler, useEffect, useRef, useState } from "react";
-import "./styles.css"
+import "./styles.css";
 
 type Props = {
   onChange: ChangeEventHandler<HTMLInputElement>;
