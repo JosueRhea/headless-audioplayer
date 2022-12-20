@@ -4,6 +4,7 @@ const typescript = require("@rollup/plugin-typescript");
 const dts = require("rollup-plugin-dts");
 const { terser } = require("rollup-plugin-terser");
 const peerDepsExternal = require("rollup-plugin-peer-deps-external");
+const postcss = require("rollup-plugin-postcss");
 
 const packageJson = require("./package.json");
 
@@ -27,7 +28,12 @@ module.exports = [
       resolve(),
       commonjs(),
       typescript({ tsconfig: "./tsconfig.json" }),
-      terser()
+      terser(),
+      postcss({
+        plugins: [],
+        extract: true,
+        extract: "index.css",
+      }),
     ],
     external: ["react", "react-dom"],
   },
@@ -35,5 +41,6 @@ module.exports = [
     input: "dist/esm/index.d.ts",
     output: [{ file: "dist/index.d.ts", format: "esm" }],
     plugins: [dts.default()],
+    external: [/\.css$/u]
   },
 ];
