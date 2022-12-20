@@ -16,8 +16,16 @@ type PlayerContextProps = {
     total: string;
   };
   togglePlay: () => void;
+  onSliderChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
-const PlayerContext = createContext<PlayerContextProps | null>(null);
+const PlayerContext = createContext<PlayerContextProps>({
+  downloadProgress: 0,
+  isPlaying: false,
+  onSliderChange: (e: ChangeEvent<HTMLInputElement>) => {},
+  progress: 0,
+  timestamp: { current: "0", total: "0" },
+  togglePlay: () => {},
+});
 
 const getTime = (time: number) => {
   let seconds: string | number = time % 60;
@@ -150,7 +158,14 @@ const PlayerProvider = ({ src, children }: PlayerProps) => {
 
   return (
     <PlayerContext.Provider
-      value={{ downloadProgress, isPlaying, progress, timestamp, togglePlay }}
+      value={{
+        downloadProgress,
+        isPlaying,
+        progress,
+        timestamp,
+        togglePlay,
+        onSliderChange,
+      }}
     >
       <audio
         src={src}

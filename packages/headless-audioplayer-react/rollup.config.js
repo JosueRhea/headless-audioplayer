@@ -30,9 +30,7 @@ module.exports = [
       typescript({ tsconfig: "./tsconfig.json" }),
       terser(),
       postcss({
-        plugins: [],
-        extract: true,
-        extract: "index.css",
+        plugins: []
       }),
     ],
     external: ["react", "react-dom"],

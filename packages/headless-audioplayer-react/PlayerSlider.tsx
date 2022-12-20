@@ -35,13 +35,13 @@ export const PlayerSlider = ({
   }, [progress]);
 
   return (
-    <div className="block w-full h-2 bg-gray-100 rounded-md relative">
+    <div className="headless-player-progress-container">
       <span
-        className="h-full bg-gradient-to-r from-zinc-700 to-zinc-900 relative block rounded-md z-20"
+        className="headless-player-progress-bar"
         style={{ width: `${progressBarWidth}px` }}
       ></span>
       <span
-        className="w-4 h-4 rounded-full bg-zinc-900 -translate-y-2/4 absolute top-2/4 my-auto pointer-events-none select-none z-20"
+        className="headless-player-thumb"
         ref={thumbRef}
         style={{
           left: `${position}%`,
@@ -49,12 +49,12 @@ export const PlayerSlider = ({
         }}
       ></span>
       <span
-        className="h-2 rounded-full bg-gray-200 -translate-y-2/4 absolute top-2/4 my-auto pointer-events-none select-none z-10 transition-[width] duration-150"
+        className="headless-player-download"
         style={{ width: `${downloadProgress}%` }}
       ></span>
       <input
         type="range"
-        className="range appearance-none h-4 w-full cursor-pointer mx-0 my-auto absolute top-0 bottom-0 opacity-0 z-30"
+        className="headless-player-range"
         step="0.01"
         ref={rangeRef}
         value={position}

@@ -7,7 +7,7 @@
   "scripts": {
     "lint": "eslint *.ts*",
     "build": "rollup -c",
-    "dev": "rollup -c --watch --watch.include=**/*.tsx"
+    "dev": "rollup -c --watch --watch.include=**/*.{tsx,css}"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.0",

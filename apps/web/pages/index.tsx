@@ -1,4 +1,8 @@
-import { PlayerProvider, Player } from "headless-audioplayer-react";
+import {
+  PlayerProvider,
+  Player,
+  PlayerSlider,
+} from "headless-audioplayer-react";
 
 export default function Web() {
   return (
@@ -6,8 +10,17 @@ export default function Web() {
       <PlayerProvider src="https://ljinlovesongs.onrender.com/songs/639d2ccd6453443d963f4050">
         <Player>
           {(context) => (
-            <div className="w-full max-w-lg">
-              <h1>Hello</h1>
+            <div className="w-full max-w-lg mt-10">
+              <PlayerSlider
+                downloadProgress={context.downloadProgress}
+                onChange={context.onSliderChange}
+                progress={context.progress}
+              />
+              <button onClick={context.togglePlay}>
+                {context.isPlaying ? "Pause" : "Play"}
+              </button>
+              <p>{context.timestamp.current}</p>
+              <p>{context.timestamp.total}</p>
             </div>
           )}
         </Player>
