@@ -3,11 +3,15 @@ import {
   Player,
   PlayerSlider,
 } from "headless-audioplayer-react";
+import { useState } from "react";
 
 export default function Web() {
+  const [src, setSrc] = useState(
+    "https://ljinlovesongs.onrender.com/songs/639d2ccd6453443d963f4050"
+  );
   return (
     <div className="w-full flex items-center flex-col">
-      <PlayerProvider src="https://ljinlovesongs.onrender.com/songs/639d2ccd6453443d963f4050">
+      <PlayerProvider src={src}>
         <Player>
           {(context) => (
             <div className="w-full max-w-lg mt-10">
@@ -15,10 +19,6 @@ export default function Web() {
                 downloadProgress={context.downloadProgress}
                 onChange={context.onSliderChange}
                 progress={context.progress}
-                containerColor="#fbbf24"
-                progressColor="#fde68a"
-                thumbColor="#166534"
-                downloadProgressColor="#c4b5fd"
               />
               <button onClick={context.togglePlay}>
                 {context.isPlaying ? "Pause" : "Play"}
@@ -29,6 +29,18 @@ export default function Web() {
           )}
         </Player>
       </PlayerProvider>
+      <button
+        onClick={() =>
+          setSrc((prev) =>
+            prev ==
+            "https://ljinlovesongs.onrender.com/songs/639d34a56453443d963f40af"
+              ? "https://ljinlovesongs.onrender.com/songs/639d2ccd6453443d963f4050"
+              : "https://ljinlovesongs.onrender.com/songs/639d34a56453443d963f40af"
+          )
+        }
+      >
+        Change src
+      </button>
     </div>
   );
 }
