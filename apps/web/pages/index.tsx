@@ -9,9 +9,30 @@ export default function Web() {
   const [src, setSrc] = useState(
     "https://ljinlovesongs.onrender.com/songs/639d2ccd6453443d963f4050"
   );
+
+  const changeSrc = () => {
+    setSrc((prev) =>
+      prev ==
+      "https://ljinlovesongs.onrender.com/songs/639d34a56453443d963f40af"
+        ? "https://ljinlovesongs.onrender.com/songs/639d2ccd6453443d963f4050"
+        : "https://ljinlovesongs.onrender.com/songs/639d34a56453443d963f40af"
+    );
+  };
   return (
     <div className="w-full flex items-center flex-col">
-      <PlayerProvider src={src}>
+      <PlayerProvider
+        src={src}
+        onEnded={() => {
+          console.log("Ended");
+          changeSrc();
+        }}
+        onPause={() => {
+          console.log("Pause");
+        }}
+        onPlay={() => {
+          console.log("Play");
+        }}
+      >
         <Player>
           {(context) => (
             <div className="w-full max-w-lg mt-10">
@@ -29,18 +50,7 @@ export default function Web() {
           )}
         </Player>
       </PlayerProvider>
-      <button
-        onClick={() =>
-          setSrc((prev) =>
-            prev ==
-            "https://ljinlovesongs.onrender.com/songs/639d34a56453443d963f40af"
-              ? "https://ljinlovesongs.onrender.com/songs/639d2ccd6453443d963f4050"
-              : "https://ljinlovesongs.onrender.com/songs/639d34a56453443d963f40af"
-          )
-        }
-      >
-        Change src
-      </button>
+      <button onClick={changeSrc}>Change src</button>
     </div>
   );
 }
