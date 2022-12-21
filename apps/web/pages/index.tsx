@@ -15,6 +15,10 @@ export default function Web() {
                 downloadProgress={context.downloadProgress}
                 onChange={context.onSliderChange}
                 progress={context.progress}
+                containerColor="#fbbf24"
+                progressColor="#fde68a"
+                thumbColor="#166534"
+                downloadProgressColor="#c4b5fd"
               />
               <button onClick={context.togglePlay}>
                 {context.isPlaying ? "Pause" : "Play"}
