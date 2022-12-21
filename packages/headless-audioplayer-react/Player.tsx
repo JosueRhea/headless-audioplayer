@@ -39,7 +39,7 @@ const getTime = (time: number) => {
   return minutes + ":" + seconds;
 };
 
-export const usePlayer = () => {
+export const usePlayer = (src: string) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [shouldStart, setShouldStart] = useState(false);
@@ -67,7 +67,7 @@ export const usePlayer = () => {
         setShouldStart(false);
       }
     }
-  }, [isPlaying]);
+  }, [isPlaying, src]);
 
   useEffect(() => {
     setTimeStamp({ current: "0:0", total: "0:0" });
@@ -154,7 +154,7 @@ const PlayerProvider = ({ src, children }: PlayerProps) => {
     progress,
     timestamp,
     togglePlay,
-  } = usePlayer();
+  } = usePlayer(src);
 
   return (
     <PlayerContext.Provider
