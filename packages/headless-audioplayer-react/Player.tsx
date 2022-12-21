@@ -5,6 +5,7 @@ import {
   ChangeEvent,
   createContext,
   ReactNode,
+  SyntheticEvent,
 } from "react";
 
 type PlayerContextProps = {
@@ -140,10 +141,13 @@ export const usePlayer = (src: string) => {
 
 export type PlayerProps = {
   src: string;
+  onEnded?: (e: SyntheticEvent<HTMLAudioElement, Event>) => void;
+  onPause?: (e: SyntheticEvent<HTMLAudioElement, Event>) => void;
+  onPlay?: (e: SyntheticEvent<HTMLAudioElement, Event>) => void;
   children: ReactNode;
 };
 
-const PlayerProvider = ({ src, children }: PlayerProps) => {
+const PlayerProvider = ({ src, children, ...rest }: PlayerProps) => {
   const {
     audioEl,
     downloadProgress,
@@ -174,6 +178,7 @@ const PlayerProvider = ({ src, children }: PlayerProps) => {
         ref={audioEl}
         controls={false}
         style={{ display: "none" }}
+        {...rest}
       ></audio>
       {children}
     </PlayerContext.Provider>
