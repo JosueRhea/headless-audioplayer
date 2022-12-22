@@ -22,6 +22,7 @@ export default function Web() {
     <div className="w-full flex items-center flex-col">
       <PlayerProvider
         src={src}
+        loop={true}
         onEnded={() => {
           console.log("Ended");
           changeSrc();
