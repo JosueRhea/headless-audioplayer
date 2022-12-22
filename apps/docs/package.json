@@ -8,7 +8,6 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "lint": "eslint *.src*",
     "astro": "astro"
   },
   "dependencies": {
