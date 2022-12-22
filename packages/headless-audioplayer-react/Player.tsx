@@ -144,10 +144,18 @@ export type PlayerProps = {
   onEnded?: (e: SyntheticEvent<HTMLAudioElement, Event>) => void;
   onPause?: (e: SyntheticEvent<HTMLAudioElement, Event>) => void;
   onPlay?: (e: SyntheticEvent<HTMLAudioElement, Event>) => void;
+  loop?: boolean;
   children: ReactNode;
 };
 
-const PlayerProvider = ({ src, children, ...rest }: PlayerProps) => {
+const PlayerProvider = ({
+  src,
+  children,
+  onEnded,
+  onPause,
+  onPlay,
+  ...rest
+}: PlayerProps) => {
   const {
     audioEl,
     downloadProgress,

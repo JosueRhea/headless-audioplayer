@@ -1,8 +1,11 @@
 # Change Log
+
 All notable changes to this project will be documented in this file.
 
 ## [0.0.5] -> 12 - 22 - 2022
+
 ### Breaking changes
+
 To improve the css load time of the `Player Slider`, now the css is extracted in separated file, and you have to import in your app, as the following example
 
 ```tsx
