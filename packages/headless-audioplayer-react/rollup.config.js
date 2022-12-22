@@ -30,7 +30,8 @@ module.exports = [
       typescript({ tsconfig: "./tsconfig.json" }),
       terser(),
       postcss({
-        plugins: []
+        plugins: [],        
+        extract: "css/slider.css",
       }),
     ],
     external: ["react", "react-dom"],
@@ -39,6 +40,6 @@ module.exports = [
     input: "dist/esm/index.d.ts",
     output: [{ file: "dist/index.d.ts", format: "esm" }],
     plugins: [dts.default()],
-    external: [/\.css$/u]
+    external: [/\.css$/u],
   },
 ];

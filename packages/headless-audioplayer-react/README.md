@@ -57,6 +57,9 @@ import {
   PlayerSlider,
 } from "headless-audioplayer-react";
 
+// Slider styles are required
+import "headless-audioplayer-react/dist/cjs/css/slider.css"; // If your using nextjs 12, you have to import this in the _app component
+
 export default function Web() {
   return (
     <div className="w-full flex items-center flex-col">
