@@ -2,6 +2,7 @@ import {
   PlayerProvider,
   Player,
   PlayerSlider,
+  VolumeSlider,
 } from "headless-audioplayer-react";
 import { useState } from "react";
 
@@ -35,20 +36,29 @@ export default function Web() {
         }}
       >
         <Player>
-          {(context) => (
-            <div className="w-full max-w-lg mt-10">
-              <PlayerSlider
-                downloadProgress={context.downloadProgress}
-                onChange={context.onSliderChange}
-                progress={context.progress}
-              />
-              <button onClick={context.togglePlay}>
-                {context.isPlaying ? "Pause" : "Play"}
-              </button>
-              <p>{context.timestamp.current}</p>
-              <p>{context.timestamp.total}</p>
-            </div>
-          )}
+          {(context) => {
+            // console.log(context.volume);
+            return (
+              <div className="w-full max-w-lg mt-10">
+                <PlayerSlider
+                  downloadProgress={context.downloadProgress}
+                  onChange={context.onSliderChange}
+                  progress={context.progress}
+                />
+                <button onClick={context.togglePlay}>
+                  {context.isPlaying ? "Pause" : "Play"}
+                </button>
+                <p>{context.timestamp.current}</p>
+                <p>{context.timestamp.total}</p>
+                <button onClick={context.increaseVolume}>+1</button>
+                <button onClick={context.decreaseVolume}>-1</button>
+                <VolumeSlider
+                  onChange={context.onSliderVolumeChange}
+                  volume={context.volume}
+                />
+              </div>
+            );
+          }}
         </Player>
       </PlayerProvider>
       <button onClick={changeSrc}>Change src</button>
