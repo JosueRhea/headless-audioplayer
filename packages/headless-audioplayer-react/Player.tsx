@@ -18,6 +18,10 @@ type PlayerContextProps = {
   };
   togglePlay: () => void;
   onSliderChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  decreaseVolume: () => void;
+  increaseVolume: () => void;
+  volume: number;
+  onSliderVolumeChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 const PlayerContext = createContext<PlayerContextProps>({
   downloadProgress: 0,
@@ -26,6 +30,10 @@ const PlayerContext = createContext<PlayerContextProps>({
   progress: 0,
   timestamp: { current: "0", total: "0" },
   togglePlay: () => {},
+  decreaseVolume: () => {},
+  increaseVolume: () => {},
+  volume: 0,
+  onSliderVolumeChange: () => {},
 });
 
 const getTime = (time: number) => {
@@ -40,12 +48,13 @@ const getTime = (time: number) => {
   return minutes + ":" + seconds;
 };
 
-export const usePlayer = (src: string) => {
+const usePlayer = (src: string) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [shouldStart, setShouldStart] = useState(false);
   const [timestamp, setTimeStamp] = useState({ current: "0:0", total: "0:0" });
   const [downloadProgress, setDownloadProgress] = useState(0);
+  const [volume, setVolume] = useState(0);
   const audioEl = useRef<HTMLAudioElement>(null);
 
   const onSliderChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -55,6 +64,41 @@ export const usePlayer = (src: string) => {
         (audio.duration / 100) * Number(e.target.value);
       audio.currentTime = updatedCurrentTime;
       setProgress(Number(e.target.value));
+    }
+  };
+
+  const onSliderVolumeChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (audioEl.current) {
+      const newValue = Number(e.target.value) / 100;
+      if (newValue > 1 || newValue < 0) return;
+      audioEl.current.volume = newValue;
+      setVolume(newValue);
+    }
+  };
+
+  const increaseVolume = () => {
+    if (audioEl.current) {
+      if (audioEl.current.volume + 0.1 <= 1) {
+        audioEl.current.volume = audioEl.current.volume + 0.1;
+        console.log("increased at", audioEl.current.volume);
+        setVolume(audioEl.current.volume);
+      } else {
+        audioEl.current.volume = 1;
+        setVolume(audioEl.current.volume);
+      }
+    }
+  };
+
+  const decreaseVolume = () => {
+    if (audioEl.current) {
+      if (audioEl.current.volume - 0.1 >= 0) {
+        audioEl.current.volume = audioEl.current.volume - 0.1;
+        console.log("decreased at", audioEl.current.volume);
+        setVolume(audioEl.current.volume);
+      } else {
+        audioEl.current.volume = 0;
+        setVolume(audioEl.current.volume);
+      }
     }
   };
 
@@ -73,6 +117,7 @@ export const usePlayer = (src: string) => {
   useEffect(() => {
     setTimeStamp({ current: "0:0", total: "0:0" });
     if (audioEl.current) {
+      setVolume(audioEl.current.volume);
       if (audioEl.current.currentTime && audioEl.current.duration) {
         const currentTime = getTime(audioEl.current.currentTime);
         const totalTime = getTime(audioEl.current.duration);
@@ -136,6 +181,10 @@ export const usePlayer = (src: string) => {
     handleOnDownloadProgress,
     downloadProgress,
     togglePlay,
+    volume,
+    increaseVolume,
+    decreaseVolume,
+    onSliderVolumeChange,
   };
 };
 
@@ -166,6 +215,10 @@ const PlayerProvider = ({
     progress,
     timestamp,
     togglePlay,
+    decreaseVolume,
+    increaseVolume,
+    volume,
+    onSliderVolumeChange,
   } = usePlayer(src);
 
   return (
@@ -177,6 +230,10 @@ const PlayerProvider = ({
         timestamp,
         togglePlay,
         onSliderChange,
+        decreaseVolume,
+        increaseVolume,
+        volume,
+        onSliderVolumeChange,
       }}
     >
       <audio
