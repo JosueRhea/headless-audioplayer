@@ -1,11 +1,27 @@
 {
   "name": "headless-audioplayer-svelte",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "type": "module",
   "main": "./package/index.js",
+  "author": {
+    "name": "JosueRhea"
+  },
+  "repository": {
+    "url": "https://github.com/JosueRhea/headless-audioplayer/tree/main/packages/headless-audioplayer-react"
+  },
+  "homepage": "https://github.com/JosueRhea/headless-audioplayer/tree/main/packages/headless-audioplayer-react",
+  "keywords": [
+    "react",
+    "audio",
+    "audioplayer",
+    "media",
+    "range",
+    "player"
+  ],
   "files": [
     "package"
   ],
+  "license": "MIT",
   "exports": {
     "./package.json": "./package/package.json",
     ".": "./package/index.js"
