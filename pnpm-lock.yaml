@@ -17,6 +17,27 @@ importers:
       prettier: 2.8.1
       turbo: 1.6.3
 
+  apps/aaa:
+    specifiers:
+      '@sveltejs/vite-plugin-svelte': ^2.0.0
+      '@tsconfig/svelte': ^3.0.0
+      headless-audioplayer-svelte: workspace:^0.0.5
+      svelte: ^3.54.0
+      svelte-check: ^2.10.0
+      tslib: ^2.4.1
+      typescript: ^4.9.3
+      vite: ^4.0.0
+    dependencies:
+      headless-audioplayer-svelte: link:../../packages/headless-audioplayer-svelte
+    devDependencies:
+      '@sveltejs/vite-plugin-svelte': 2.0.2_svelte@3.55.0+vite@4.0.3
+      '@tsconfig/svelte': 3.0.0
+      svelte: 3.55.0
+      svelte-check: 2.10.3_svelte@3.55.0
+      tslib: 2.4.1
+      typescript: 4.9.4
+      vite: 4.0.3
+
   apps/docs:
     specifiers:
       '@astrojs/mdx': ^0.13.0
@@ -30,19 +51,6 @@ importers:
       astro: 1.7.2
       headless-audioplayer-react: link:../../packages/headless-audioplayer-react
       tailwindcss: 3.2.4
-
-  apps/svelte:
-    specifiers:
-      '@sveltejs/vite-plugin-svelte': ^2.0.0
-      headless-audioplayer-svelte: workspace:*
-      svelte: ^3.54.0
-      vite: ^4.0.0
-    dependencies:
-      headless-audioplayer-svelte: link:../../packages/headless-audioplayer-svelte
-    devDependencies:
-      '@sveltejs/vite-plugin-svelte': 2.0.2_svelte@3.55.0+vite@4.0.3
-      svelte: 3.55.0
-      vite: 4.0.3
 
   apps/web:
     specifiers:
@@ -1430,6 +1438,10 @@ packages:
   /@trysound/sax/0.2.0:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
+    dev: true
+
+  /@tsconfig/svelte/3.0.0:
+    resolution: {integrity: sha512-pYrtLtOwku/7r1i9AMONsJMVYAtk3hzOfiGNekhtq5tYBGA7unMve8RvUclKLMT3PrihvJqUmzsRGh0RP84hKg==}
     dev: true
 
   /@types/acorn/4.0.6:

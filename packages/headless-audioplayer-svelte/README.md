@@ -26,7 +26,7 @@ You can make the player as you want, with your own styles.
 // +page.svelte
 <script lang="ts">
   import { PlayerProvider } from "headless-audioplayer-svelte";
-  import YourPlayerComponent from "$lib/YourPlayerComponent.svelte";
+  import YourPlayerComponent from "./lib/YourPlayerComponent.svelte";
   import { writable } from "svelte/store";
 
   let src = writable("your audio media or audio url");
@@ -40,8 +40,12 @@ You can make the player as you want, with your own styles.
 ```svelte
 // lib/YourPlayerComponent.svelte
 <script lang="ts">
-  import { type PlayerContextProps, PlayerSlider, VolumeSlider } from "$lib";
-  import { getContext } from "svelte/types/runtime/internal/lifecycle";
+  import {
+    type PlayerContextProps,
+    PlayerSlider,
+    VolumeSlider,
+  } from "headless-audioplayer-svelte";
+  import { getContext } from "svelte";
 
   let context = getContext<PlayerContextProps>("playerContext");
 
