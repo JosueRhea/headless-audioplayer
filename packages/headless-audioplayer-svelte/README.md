@@ -36,6 +36,7 @@ You can make the player as you want, with your own styles.
   <YourPlayerComponent />
 </PlayerProvider>
 ```
+
 ```svelte
 // lib/YourPlayerComponent.svelte
 <script lang="ts">
