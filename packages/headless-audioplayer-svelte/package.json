@@ -11,12 +11,13 @@
   },
   "homepage": "https://github.com/JosueRhea/headless-audioplayer/tree/main/packages/headless-audioplayer-react",
   "keywords": [
-    "react",
+    "svelte",
     "audio",
     "audioplayer",
     "media",
     "range",
-    "player"
+    "player",
+    "svelte-kit"
   ],
   "files": [
     "package"
