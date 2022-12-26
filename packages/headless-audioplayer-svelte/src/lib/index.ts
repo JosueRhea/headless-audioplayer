@@ -4,7 +4,6 @@ export { default as PlayerProvider } from "./Player.svelte";
 export { default as PlayerSlider } from "./PlayerSlider.svelte";
 export { default as VolumeSlider } from "./VolumeSlider.svelte";
 
-
 export type PlayerContextProps = {
   downloadProgress: Writable<number>;
   isPlaying: Writable<boolean>;
