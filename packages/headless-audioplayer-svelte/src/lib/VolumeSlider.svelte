@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Writable } from "svelte/store";
 
-  export let onChange: (e: Event) => {};
+  export let onChange: (e: Event) => void;
   export let volume: Writable<number>;
   export let containerColor: string = "#f4f4f5";
   export let thumbColor: string = "#18181b";
