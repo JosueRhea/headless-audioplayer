@@ -76,6 +76,12 @@ export default function Web() {
                 <p>{context.timestamp.current}</p>
                 <p>{context.timestamp.total}</p>
               </div>
+              <button onClick={context.increaseVolume}>+1</button>
+              <button onClick={context.decreaseVolume}>-1</button>
+              <VolumeSlider
+                onChange={context.onSliderVolumeChange}
+                volume={context.volume}
+              />
             </div>
           )}
         </Player>
