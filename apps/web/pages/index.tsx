@@ -56,6 +56,9 @@ export default function Web() {
                   onChange={context.onSliderVolumeChange}
                   volume={context.volume}
                 />
+                <button onClick={context.toggleMute}>
+                  {context.mute.state == "muted" ? "Unmute" : "Mute"}
+                </button>
               </div>
             );
           }}

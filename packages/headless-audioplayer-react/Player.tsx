@@ -8,6 +8,11 @@ import {
   SyntheticEvent,
 } from "react";
 
+type MutedProps = {
+  state: "muted" | "off";
+  backVolume: number;
+};
+
 type PlayerContextProps = {
   downloadProgress: number;
   isPlaying: boolean;
@@ -22,6 +27,8 @@ type PlayerContextProps = {
   increaseVolume: () => void;
   volume: number;
   onSliderVolumeChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  toggleMute: () => void;
+  mute: MutedProps;
 };
 const PlayerContext = createContext<PlayerContextProps>({
   downloadProgress: 0,
@@ -34,6 +41,8 @@ const PlayerContext = createContext<PlayerContextProps>({
   increaseVolume: () => {},
   volume: 0,
   onSliderVolumeChange: () => {},
+  toggleMute: () => {},
+  mute: { backVolume: 1, state: "off" },
 });
 
 const getTime = (time: number) => {
@@ -54,6 +63,10 @@ const usePlayer = (src: string) => {
   const [shouldStart, setShouldStart] = useState(false);
   const [timestamp, setTimeStamp] = useState({ current: "0:0", total: "0:0" });
   const [downloadProgress, setDownloadProgress] = useState(0);
+  const [muted, setIsMuted] = useState<MutedProps>({
+    state: "off",
+    backVolume: 1,
+  });
   const [volume, setVolume] = useState(0);
   const audioEl = useRef<HTMLAudioElement>(null);
 
@@ -76,15 +89,39 @@ const usePlayer = (src: string) => {
     }
   };
 
+  const toggleMute = () => {
+    if (audioEl.current) {
+      if (muted.state == "muted") {
+        if (muted.backVolume == 0) {
+          audioEl.current.volume = 1;
+          setIsMuted({ state: "off", backVolume: audioEl.current.volume });
+          setVolume(audioEl.current.volume)
+        } else {
+          audioEl.current.volume = muted.backVolume;
+          setIsMuted({ state: "off", backVolume: audioEl.current.volume });
+          setVolume(audioEl.current.volume)
+        }
+      } else {
+        setIsMuted({ state: "muted", backVolume: audioEl.current.volume });
+        audioEl.current.volume = 0;
+        setVolume(audioEl.current.volume)
+      }
+    }
+  };
+
   const increaseVolume = () => {
     if (audioEl.current) {
       if (audioEl.current.volume + 0.1 <= 1) {
         audioEl.current.volume = audioEl.current.volume + 0.1;
         console.log("increased at", audioEl.current.volume);
         setVolume(audioEl.current.volume);
+        // @ts-ignore
+        setIsMuted((prev) => ({ ...prev, backVolume: audioEl.current.volume }));
       } else {
         audioEl.current.volume = 1;
         setVolume(audioEl.current.volume);
+        // @ts-ignore
+        setIsMuted((prev) => ({ ...prev, backVolume: audioEl.current.volume }));
       }
     }
   };
@@ -95,9 +132,13 @@ const usePlayer = (src: string) => {
         audioEl.current.volume = audioEl.current.volume - 0.1;
         console.log("decreased at", audioEl.current.volume);
         setVolume(audioEl.current.volume);
+        // @ts-ignore
+        setIsMuted((prev) => ({ ...prev, backVolume: audioEl.current.volume }));
       } else {
         audioEl.current.volume = 0;
         setVolume(audioEl.current.volume);
+        // @ts-ignore
+        setIsMuted((prev) => ({ ...prev, backVolume: audioEl.current.volume }));
       }
     }
   };
@@ -185,6 +226,8 @@ const usePlayer = (src: string) => {
     increaseVolume,
     decreaseVolume,
     onSliderVolumeChange,
+    toggleMute,
+    mute: muted
   };
 };
 
@@ -219,6 +262,8 @@ const PlayerProvider = ({
     increaseVolume,
     volume,
     onSliderVolumeChange,
+    toggleMute,
+    mute
   } = usePlayer(src);
 
   return (
@@ -234,6 +279,8 @@ const PlayerProvider = ({
         increaseVolume,
         volume,
         onSliderVolumeChange,
+        toggleMute,
+        mute
       }}
     >
       <audio
