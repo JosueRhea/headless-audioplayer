@@ -1,15 +1,15 @@
 {
   "name": "headless-audioplayer-svelte",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "main": "./package/index.js",
   "author": {
     "name": "JosueRhea"
   },
   "repository": {
-    "url": "https://github.com/JosueRhea/headless-audioplayer/tree/main/packages/headless-audioplayer-react"
+    "url": "https://github.com/JosueRhea/headless-audioplayer/tree/main/packages/headless-audioplayer-svelte"
   },
-  "homepage": "https://github.com/JosueRhea/headless-audioplayer/tree/main/packages/headless-audioplayer-react",
+  "homepage": "https://headless-audioplayer.vercel.app",
   "keywords": [
     "svelte",
     "audio",

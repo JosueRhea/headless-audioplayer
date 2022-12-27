@@ -1,6 +1,6 @@
 {
   "name": "headless-audioplayer-react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "author": {
@@ -9,7 +9,7 @@
   "repository": {
     "url": "https://github.com/JosueRhea/headless-audioplayer/tree/main/packages/headless-audioplayer-react"
   },
-  "homepage": "https://github.com/JosueRhea/headless-audioplayer/tree/main/packages/headless-audioplayer-react",
+  "homepage": "https://headless-audioplayer.vercel.app/",
   "keywords": [
     "react",
     "audio",
