@@ -16,13 +16,14 @@ Choose your favorite package manager
 ```cmd
 pnpm install headless-audioplayer-react
 ```
+
 ```cmd
 npm install headless-audioplayer-react
 ```
+
 ```cmd
 yarn add headless-audioplayer-react
 ```
-
 
 ## Getting started
 

@@ -16,9 +16,11 @@ Choose your favorite package manager
 ```cmd
 pnpm install headless-audioplayer-svelte
 ```
+
 ```cmd
 npm install headless-audioplayer-svelte
 ```
+
 ```cmd
 yarn add headless-audioplayer-svelte
 ```
