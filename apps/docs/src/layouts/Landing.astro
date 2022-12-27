@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon";
-import "headless-audioplayer-react/dist/cjs/css/slider.css"; 
+import "headless-audioplayer-react/dist/cjs/css/slider.css";
 
 interface Props {
   title: string;
@@ -20,6 +20,7 @@ const { title, desc } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={desc} />
     <title>Headless Audio Player - {title}</title>
+    <script defer src="/_vercel/insights/script.js"></script>
   </head>
   <body class="w-full flex flex-col items-center">
     <main class="w-full max-w-4xl p-4">

@@ -14,6 +14,7 @@ const { frontmatter } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={frontmatter.desc} />
     <title>Headless Audio Player - {frontmatter.title}</title>
+    <script defer src="/_vercel/insights/script.js"></script>
   </head>
   <body class="w-full flex flex-col items-center">
     <main class="w-full max-w-4xl p-4">
