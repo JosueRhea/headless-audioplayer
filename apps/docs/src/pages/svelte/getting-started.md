@@ -70,6 +70,8 @@ You can make the player as you want, with your own styles.
     timestamp,
     togglePlay,
     volume,
+    toggleMute,
+    mute
   } = context;
 </script>
 
@@ -84,4 +86,7 @@ You can make the player as you want, with your own styles.
 <VolumeSlider onChange={onSliderVolumeChange} {volume} />
 <button on:click={increaseVolume}>+1</button>
 <button on:click={decreaseVolume}>-1</button>
+<button on:click={toggleMute}
+  >{$mute.state == "muted" ? "Unmute" : "mute"}</button
+>
 ```
