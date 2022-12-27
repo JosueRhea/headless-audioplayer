@@ -4,3 +4,6 @@ Headless Audio Player
 <p align="center">
 A wrapper to make audio playing more easier
 </p>
+
+## Documentation
+Visit the package documentation at [Headless AudioPlayer](https://headless-audioplayer.vercel.app/)
