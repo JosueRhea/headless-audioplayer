@@ -25,7 +25,7 @@ export const Player = () => {
               <span>{context.timestamp.current}</span>
               <span>{context.timestamp.total}</span>
             </div>
-            <div className="w-full justify-between flex mt-2 items-center">
+            <div className="w-full flex-col sm:flex-row gap-y-2 sm:gap-y-0 items-start justify-between flex mt-2 sm:items-center">
               <div className="flex items-center">
                 <img src="/notion.jpg" alt="" className="w-14 h-14" />
                 <div className="ml-2">

@@ -19,7 +19,7 @@ const { frontmatter } = Astro.props;
     <main class="w-full max-w-4xl p-4">
       <nav class="flex justify-between items-center">
         <a href="/">
-          <h1 class="text-2xl font-semibold">
+          <h1 class="text-xl sm:text-2xl font-semibold">
             Headless <span class="text-orange-500">AudioPlayer</span>
             <span class="bg-orange-300 px-2 py-1 rounded-lg text-base"
               >v1.0</span
@@ -35,7 +35,7 @@ const { frontmatter } = Astro.props;
             ><Icon pack="mdi" name="github" width={30} height={30} />
           </a>
           <a
-            class="hover:bg-gray-100 px-2 py-1 rounded-md text-lg transition-colors flex gap-x-2 items-center"
+            class="hover:bg-gray-100 px-2 py-1 rounded-md text-base sm:text-lg transition-colors flex gap-x-2 items-center"
             href={`/${frontmatter.frto}/getting-started`}
             >{
               frontmatter.frto[0].toUpperCase() +
