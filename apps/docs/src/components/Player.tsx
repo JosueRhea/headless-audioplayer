@@ -8,7 +8,7 @@ import {
   AiFillPauseCircle,
   AiFillPlayCircle,
   AiOutlineSound,
-} from "react-icons/ai";
+} from "react-icons/ai/index";
 
 export const Player = () => {
   return (
