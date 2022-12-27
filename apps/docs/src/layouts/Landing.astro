@@ -21,6 +21,15 @@ const { title, desc } = Astro.props;
     <meta name="description" content={desc} />
     <title>Headless Audio Player - {title}</title>
     <script defer src="/_vercel/insights/script.js"></script>
+    <meta property="og:title" content={title} />
+    <meta
+      property={desc}
+      content="Get from SEO newbie to SEO pro in 8 simple steps."
+    />
+    <meta
+      property="og:image"
+      content="/og.png"
+    />
   </head>
   <body class="w-full flex flex-col items-center pb-20">
     <main class="w-full max-w-4xl p-4">

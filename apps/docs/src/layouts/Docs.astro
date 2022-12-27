@@ -13,6 +13,15 @@ const { frontmatter } = Astro.props;
     <link rel="stylesheet" href="/markdown.css" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={frontmatter.desc} />
+    <meta property="og:title" content={frontmatter.title} />
+    <meta
+      property={frontmatter.desc}
+      content="Get from SEO newbie to SEO pro in 8 simple steps."
+    />
+    <meta
+      property="og:image"
+      content="/og.png"
+    />
     <title>Headless Audio Player - {frontmatter.title}</title>
     <script defer src="/_vercel/insights/script.js"></script>
   </head>
