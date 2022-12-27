@@ -25,19 +25,13 @@ export default function Web() {
         src={src}
         loop={true}
         onEnded={() => {
-          console.log("Ended");
           changeSrc();
         }}
-        onPause={() => {
-          console.log("Pause");
-        }}
-        onPlay={() => {
-          console.log("Play");
-        }}
+        onPause={() => {}}
+        onPlay={() => {}}
       >
         <Player>
           {(context) => {
-            // console.log(context.volume);
             return (
               <div className="w-full max-w-lg mt-10">
                 <PlayerSlider

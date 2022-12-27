@@ -113,7 +113,6 @@ const usePlayer = (src: string) => {
     if (audioEl.current) {
       if (audioEl.current.volume + 0.1 <= 1) {
         audioEl.current.volume = audioEl.current.volume + 0.1;
-        console.log("increased at", audioEl.current.volume);
         setVolume(audioEl.current.volume);
         // @ts-ignore
         setIsMuted((prev) => ({ ...prev, backVolume: audioEl.current.volume }));
@@ -130,7 +129,6 @@ const usePlayer = (src: string) => {
     if (audioEl.current) {
       if (audioEl.current.volume - 0.1 >= 0) {
         audioEl.current.volume = audioEl.current.volume - 0.1;
-        console.log("decreased at", audioEl.current.volume);
         setVolume(audioEl.current.volume);
         // @ts-ignore
         setIsMuted((prev) => ({ ...prev, backVolume: audioEl.current.volume }));
