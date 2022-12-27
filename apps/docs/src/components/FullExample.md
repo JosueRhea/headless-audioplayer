@@ -1,3 +1,4 @@
+```tsx
 import {
   PlayerProvider,
   Player as HLPlayer,
@@ -63,3 +64,4 @@ export const Player = () => {
     </PlayerProvider>
   );
 };
+```

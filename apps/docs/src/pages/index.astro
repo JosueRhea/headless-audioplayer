@@ -2,6 +2,7 @@
 import { Player } from "../components/Player";
 import { Icon } from "astro-icon";
 import Layout from "../layouts/Landing.astro";
+import { Content as FullExample } from "../components/FullExample.md";
 ---
 
 <Layout
@@ -41,8 +42,23 @@ import Layout from "../layouts/Landing.astro";
         class="p-4 group hover:scale-110 hover:rotate-12 transition-transform duration-200"
       >
         <Icon pack="logos" name="svelte-icon" width={80} height={80} />
-        <p class="text-orange-500 mt-2 font-semibold text-lg group-hover:underline decoration-orange-500">Svelte</p>
+        <p
+          class="text-orange-500 mt-2 font-semibold text-lg group-hover:underline decoration-orange-500"
+        >
+          Svelte
+        </p>
       </a>
+    </div>
+  </section>
+  <section class="mt-10">
+    <h4 class="text-center font-semibold text-2xl">
+      Do you want to build the player above?
+    </h4>
+    <p class="mb-10 text-center text-zinc-600">
+      Following example with React and Tailwind
+    </p>
+    <div class="markdown-body">
+      <FullExample />
     </div>
   </section>
 </Layout>

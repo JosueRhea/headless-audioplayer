@@ -92,6 +92,13 @@ export default function Web() {
                 onChange={context.onSliderVolumeChange}
                 volume={context.volume}
               />
+              <button onClick={context.toggleMute}>
+                {context.mute.state == "muted" ? (
+                  <AiOutlineSound className="w-5 h-5" />
+                ) : (
+                  <AiFillSound className="w-5 h-5" />
+                )}
+              </button>
             </div>
           )}
         </Player>
