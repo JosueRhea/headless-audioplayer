@@ -1,6 +1,6 @@
 {
   "name": "headless-audioplayer-svelte",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "type": "module",
   "main": "./package/index.js",
   "author": {
