@@ -18,4 +18,9 @@ export type PlayerContextProps = {
   increaseVolume: () => void;
   volume: Writable<number>;
   onSliderVolumeChange: (e: Event) => void;
+  mute: Writable<{
+    state: "muted" | "off";
+    backVolume: number;
+  }>;
+  toggleMute: () => void;
 };

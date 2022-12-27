@@ -28,8 +28,9 @@
     ".": "./package/index.js"
   },
   "scripts": {
-    "dev": "svelte-package -w",
-    "build": "svelte-kit sync && svelte-package"
+    "packge:dev": "svelte-package -w",
+    "build": "svelte-kit sync && svelte-package",
+    "dev": "vite dev"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^1.0.0",

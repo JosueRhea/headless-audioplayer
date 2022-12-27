@@ -27,6 +27,10 @@
   let timestamp = writable({ current: "0:0", total: "0:0" });
   let downloadProgress = writable(0);
   let volume = writable(0);
+  const muted = writable<{ state: "off" | "muted"; backVolume: number }>({
+    state: "off",
+    backVolume: 1,
+  });
   let audioEl: HTMLAudioElement;
 
   onMount(() => {
@@ -67,15 +71,36 @@
     }
   };
 
+  const toggleMute = () => {
+    if (audioEl) {
+      if ($muted.state == "muted") {
+        if ($muted.backVolume == 0) {
+          audioEl.volume = 1;
+          $muted = { state: "off", backVolume: audioEl.volume };
+          $volume = audioEl.volume;
+        } else {
+          audioEl.volume = $muted.backVolume;
+          $muted = { state: "off", backVolume: audioEl.volume };
+          $volume = audioEl.volume;
+        }
+      } else {
+        $muted = { state: "muted", backVolume: audioEl.volume };
+        audioEl.volume = 0;
+        $volume = audioEl.volume;
+      }
+    }
+  };
+
   const increaseVolume = () => {
     if (audioEl) {
       if (audioEl.volume + 0.1 <= 1) {
         audioEl.volume = audioEl.volume + 0.1;
-        console.log("increased at", audioEl.volume);
         $volume = audioEl.volume;
+        $muted = { ...$muted, backVolume: audioEl.volume };
       } else {
         audioEl.volume = 1;
         $volume = audioEl.volume;
+        $muted = { ...$muted, backVolume: audioEl.volume };
       }
     }
   };
@@ -83,12 +108,13 @@
   const decreaseVolume = () => {
     if (audioEl) {
       if (audioEl.volume - 0.1 >= 0) {
-        audioEl.volume = audioEl.volume - 0.1;
-        console.log("decreased at", audioEl.volume);
+        audioEl.volume = audioEl.volume - 0.1;        
         $volume = audioEl.volume;
+        $muted = { ...$muted, backVolume: audioEl.volume };
       } else {
         audioEl.volume = 0;
         $volume = audioEl.volume;
+        $muted = { ...$muted, backVolume: audioEl.volume };
       }
     }
   };
@@ -105,8 +131,7 @@
     }
   });
 
-  src.subscribe((value) => {
-    console.log("Src changed");
+  src.subscribe((value) => {    
     $progress = 0;
     $downloadProgress = 0;
     setTimeout(() => {
@@ -168,6 +193,8 @@
     increaseVolume,
     decreaseVolume,
     togglePlay,
+    mute: muted,
+    toggleMute
   });
 </script>
 
