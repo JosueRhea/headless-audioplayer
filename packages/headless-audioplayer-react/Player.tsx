@@ -95,16 +95,16 @@ const usePlayer = (src: string) => {
         if (muted.backVolume == 0) {
           audioEl.current.volume = 1;
           setIsMuted({ state: "off", backVolume: audioEl.current.volume });
-          setVolume(audioEl.current.volume)
+          setVolume(audioEl.current.volume);
         } else {
           audioEl.current.volume = muted.backVolume;
           setIsMuted({ state: "off", backVolume: audioEl.current.volume });
-          setVolume(audioEl.current.volume)
+          setVolume(audioEl.current.volume);
         }
       } else {
         setIsMuted({ state: "muted", backVolume: audioEl.current.volume });
         audioEl.current.volume = 0;
-        setVolume(audioEl.current.volume)
+        setVolume(audioEl.current.volume);
       }
     }
   };
@@ -227,7 +227,7 @@ const usePlayer = (src: string) => {
     decreaseVolume,
     onSliderVolumeChange,
     toggleMute,
-    mute: muted
+    mute: muted,
   };
 };
 
@@ -263,7 +263,7 @@ const PlayerProvider = ({
     volume,
     onSliderVolumeChange,
     toggleMute,
-    mute
+    mute,
   } = usePlayer(src);
 
   return (
@@ -280,7 +280,7 @@ const PlayerProvider = ({
         volume,
         onSliderVolumeChange,
         toggleMute,
-        mute
+        mute,
       }}
     >
       <audio
