@@ -1,0 +1,52 @@
+---
+import { Icon } from "astro-icon";
+
+const { frontmatter } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/ico.svg" />
+    <link rel="stylesheet" href="/markdown.css" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={frontmatter.desc} />
+    <title>Headless Audio Player - {frontmatter.title}</title>
+  </head>
+  <body class="w-full flex flex-col items-center">
+    <main class="w-full max-w-4xl p-4">
+      <nav class="flex justify-between items-center">
+        <a href="/">
+          <h1 class="text-2xl font-semibold">
+            Headless <span class="text-orange-500">AudioPlayer</span>
+            <span class="bg-orange-300 px-2 py-1 rounded-lg text-base"
+              >v1.0</span
+            >
+          </h1>
+        </a>
+        <div class="flex items-center gap-x-2">
+          <a
+            href="https://github.com/JosueRhea/headless-audioplayer"
+            target="_blank"
+            class="text-zinc-600 hover:text-zinc-900 gap-x-2"
+            rel="noreferrer"
+            ><Icon pack="mdi" name="github" width={30} height={30} />
+          </a>
+          <a
+            class="hover:bg-gray-100 px-2 py-1 rounded-md text-lg transition-colors flex gap-x-2 items-center"
+            href={`/${frontmatter.frto}/getting-started`}
+            >{
+              frontmatter.frto[0].toUpperCase() +
+                frontmatter.frto.slice(1).toLowerCase()
+            }<Icon pack="mdi" name="arrow-forward" width={20} height={20} />
+          </a>
+        </div>
+      </nav>
+      <section class="markdown-body mt-10">
+        <slot />
+      </section>
+    </main>
+  </body>
+</html>
